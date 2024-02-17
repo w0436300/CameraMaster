@@ -43,11 +43,28 @@ const Main = () => {
 
     return ( 
       <div>
+        <section className="jumbotron text-center">
+          <div className="container">
+            <div className="input-group">
+              <input type="text" className="form-control" placeholder="Search this site" />
+              <div className="input-group-append">
+                <button className="btn btn-secondary" type="button">
+                  <i className="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+            <div className="btn-group mt-4 ">
+            <Link className = "btn btn-sm btn-outline-secondary" to="/signin">Sign In</Link>
+            <Link className = "btn btn-sm btn-outline-secondary ml-2" to="/addcamera">Add New Camera</Link>
+              </div>
+            
+
+          </div>
+        </section>
+        
     
         <div className="album py-5 bg-light">
-        <Link className = "btn btn-sm btn-outline-secondary" to="/signin">Sign In</Link>    
-        <Link className = "btn btn-sm btn-outline-secondary" to="/addCamera">Add New Camera</Link>    
-
+            
           <div className="container">
             <div className="row">
 

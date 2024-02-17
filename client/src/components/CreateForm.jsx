@@ -12,6 +12,7 @@ const CreateForm = props => {
     const [model, setModel] = useState('')
     const [features, setFeatures] = useState('')
     const [price, setPrice] = useState('')
+    const [url, setUrl] = useState('')
     
 
     const navigate = useNavigate()
@@ -25,7 +26,8 @@ const CreateForm = props => {
             model:model,
             brand:brand,
             features:features,
-            price:price
+            price:price,
+            img_src:url
         }
         //post this data to an endpoint for creation
         axios.post(`http://localhost:8000/cameras`, body)
@@ -33,7 +35,7 @@ const CreateForm = props => {
             console.log(response)
 
             //navigate back to the home page if created successfully
-            navigate('/') //programatically navigate back to th homepage
+            navigate('/cameras') //programatically navigate back to th homepage
 
             // if(response.status.)
         })
@@ -48,19 +50,22 @@ const CreateForm = props => {
     return ( 
         <form className="form-signin" onSubmit={handleSubmit}>
 
-            <h1 className="h3 mb-3 font-weight-normal text-center">Create New Student</h1>
+            <h1 className="h3 mb-3 font-weight-normal text-center">Create New Camera</h1>
 
             <input type="text" id="inputModel" className="form-control" placeholder="Model Name" onChange={event => setModel(event.target.value)} required  />
 
             
-            <input type="text" id="inputBrand" className="form-control" placeholder="Brand Name" onChange={event => setBrand(event.target.value)} required  />
+            <input type="text" id="inputBrand" className="form-control mt-2" placeholder="Brand Name" onChange={event => setBrand(event.target.value)} required  />
             
 
-            <input type="text" id="inputPrice" className="form-control" placeholder="Price" onChange={event => setPrice(event.target.value)} required  />
+            <input type="text" id="inputPrice" className="form-control mt-2" placeholder="Price" onChange={event => setPrice(event.target.value)} required  />
 
-            <input type="text" id="inputFeatures" className="form-control" placeholder="Features" onChange={event => setFeatures(event.target.value)} required />
+            <input type="text" id="inputFeatures" className="form-control mt-2" placeholder="Features" onChange={event => setFeatures(event.target.value)} required />
 
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Save Camera</button>
+            <input type="text" id="inputUrl" className="form-control mt-2" placeholder="IMG-URL" onChange={event => setUrl(event.target.value)} required />
+
+
+            <button className="btn btn-lg btn-primary btn-block mt-4" type="submit">Save Camera</button>
         </form>
      );
 }

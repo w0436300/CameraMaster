@@ -28,7 +28,8 @@ const cameraSchema = new Schema({
     release_year: Number,
     features: [String], 
     price: String,
-    color: [String]
+    color: [String],
+    img_src:String,
 })
 
 const Camera = mongoose.model('cameras', cameraSchema); 

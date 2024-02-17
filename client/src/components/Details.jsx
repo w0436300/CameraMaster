@@ -19,6 +19,13 @@ const Details = () => {
        
          <div className="align-items-center">
             <div className="col-lg-8 col-md-8" style={{ margin: "auto", paddingTop: 30, paddingBottom: 50 }}>
+            <img 
+                className="card-img-top align-items-center mb-4" 
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" 
+                alt="Thumbnail [100%x225]" 
+                style={{height: '225px', display: 'block', objectFit: 'contain'}}
+                    src={camera?.img_src} 
+                data-holder-rendered="true" />   
                 <h4 className="font-size38 sm-font-size32 xs-font-size30">{camera?.model}</h4>
                 <p className="no-margin-bottom">Brand: {camera?.brand}</p>
                 <div className="contact-info-section margin-40px-tb">
