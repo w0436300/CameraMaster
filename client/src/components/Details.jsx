@@ -8,7 +8,7 @@ const Details = () => {
     const [camera, setCamera] = useState(null)
     const { id }=useParams()
     useEffect (() => {
-        axios.get(`http://localhost:3300/cameras/${id}`)
+        axios.get(`http://localhost:8000/cameras/${id}`)
         .then(response => {
             setCamera(response.data)
             console.log(camera?.color);
@@ -75,7 +75,11 @@ const Details = () => {
                                     <strong className="margin-10px-left xs-margin-four-left text-purple">Film Types:</strong>
                                 </div>
                                 <div className="col-md-7 col-7">
-                                    <p>{camera?.film_type.join(', ')}</p>
+                                     <ul className="list-unstyled ">
+                                            {camera?.film_types.map((film_type, index) => (
+                                                <li key={index}>{film_type}</li>
+                                            ))}
+                                    </ul>
                                 </div>
                             </div>
                         </li>
@@ -85,14 +89,14 @@ const Details = () => {
                                     <strong className="margin-10px-left xs-margin-four-left text-pink">Color:</strong>
                                 </div>
                                 <div className="col-md-7 col-7">
-                                    <p>{camera?.color}</p>
+                                    <p>{camera?.color ? camera?.color.join(', ') : camera?.color}</p>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
 
-                <h5 className="font-size24 sm-font-size22 xs-font-size20">Grades</h5>
+                <h5 className="font-size24 sm-font-size22 xs-font-size20">Average Customer Ratings</h5>
 
 
                 {
@@ -100,8 +104,8 @@ const Details = () => {
                         <div className="sm-no-margin">
                             <div className="progress-text">
                                 <div className="row">
-                                    <div className="col-7">Math</div>
-                                    <div className="col-5 text-right">camera?.grades?.math</div>
+                                    <div className="col-7">Overall</div>
+                                    <div className="col-5 text-right">Overall</div>
                                 </div>
                             </div>
                             <div className="custom-progress progress">
@@ -109,8 +113,8 @@ const Details = () => {
                             </div>
                             <div className="progress-text">
                                 <div className="row">
-                                    <div className="col-7">English</div>
-                                    <div className="col-5 text-right">{camera?.grades?.english}%</div>
+                                    <div className="col-7">Quality</div>
+                                    <div className="col-5 text-right">Quality</div>
                                 </div>
                             </div>
                             <div className="custom-progress progress">
@@ -118,8 +122,8 @@ const Details = () => {
                             </div>
                             <div className="progress-text">
                                 <div className="row">
-                                    <div className="col-7">Science</div>
-                                    <div className="col-5 text-right">{camera?.grades?.science}%</div>
+                                    <div className="col-7">Value</div>
+                                    <div className="col-5 text-right">Value</div>
                                 </div>
                             </div>
                             <div className="custom-progress progress">
@@ -129,7 +133,7 @@ const Details = () => {
 
 
                     ) : (
-                        <p>No Grades Available</p>
+                        <p>No Reviews Available</p>
                     )
                 }
 

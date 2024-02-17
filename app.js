@@ -6,6 +6,7 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors());//allow fetch/ axios request from any domin
+app.use(express.json()) 
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ const cameraSchema = new Schema({
     release_year: Number,
     features: [String], 
     price: String,
-    color: String
+    color: [String]
 })
 
 const Camera = mongoose.model('cameras', cameraSchema); 
@@ -65,5 +66,31 @@ app.get('/cameras/:id', (req,res) => {
         })
 })
 
+app.post('/cameras', async (req,res) => {
+    console.log(req.body);
 
-const server = app.listen(process.env.PORT || 3000, (result) => console.log(`listening on port${server.address().port}`))
+    const newCamera = new Camera(req.body)
+
+    const saved = await newCamera.save()
+    
+    res.send(saved)
+})
+
+//delete camera by id
+app.delete('/cameras/:id', async (req,res) => {
+    try {
+        const deletedCamera = await Camera.findByIdAndDelete(req.params.id);
+        console.log(deletedCamera);
+
+    if(!deletedCamera){
+        return res.status(404).send() //no message...the client shoulf knoe that it was not found
+    }
+    return res.status(204).send() //success no content
+    } catch(err) {
+        return res.status(500).json({message:"A server error occured. Try again or comeback later"})
+    }
+    
+})
+
+
+const server = app.listen(process.env.PORT || 8000, (result) => console.log(`listening on port${server.address().port}`))
