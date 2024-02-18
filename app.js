@@ -54,6 +54,29 @@ app.get('/cameras',(req, res) => {
     })
 })
 
+app.get('/cameras', (req, res) => {
+    const query = req.query.query || '';
+    let searchCondition = {};
+
+    if (query) {
+        searchCondition = {
+            $or: [
+                { model: { $regex: query, $options: 'i' } }, // Fuzzy matching `model`
+                { brand: { $regex: query, $options: 'i' } },  // Fuzzy matching `brand`
+                { color : { $regex: query, $options: 'i' } }, 
+            ]
+        };
+    }
+
+    Camera.find(searchCondition).then(data => {
+        res.json(data); 
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({ message: "Server Error - Please come back soon" });
+    });
+});
+
+
 app.get('/users', (req, res) => {
     User.find().then(users => res.json(users))
     .catch(error => {

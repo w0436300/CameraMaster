@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Landing from './Landing';
 
 
-//name email dob student id
-
 const CreateForm = props => {
 
     const [isLoading, setIsLoading] = useState(true);
@@ -27,8 +25,8 @@ const CreateForm = props => {
 
         loadData();
     }, []);
+    
     const handleSubmit = event => {
-
         event.preventDefault()
         setIsLoading(true)
         //build our post body to send to the api

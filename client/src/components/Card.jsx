@@ -32,7 +32,7 @@ const Card = ({camera, onDelete}) => {
                   {/* <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button> */}
                   <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=>handleDelete(camera)}>Delete</button>
               </div>
-              <small className="text-muted">9 mins</small>
+              <small className="text-muted">{camera?.color ? camera?.color.join(', ') : camera?.color}</small>
             </div>
           </div>  
         </div>
