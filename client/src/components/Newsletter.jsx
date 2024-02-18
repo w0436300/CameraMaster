@@ -5,7 +5,7 @@ import '../css/newsletter.css';
 import Landing from './Landing';
 import axios from 'axios';
 
-const Newsletter = props => {
+const Newsletter = () => {
 
     const [isLoading, setIsLoading] = useState(true);
 

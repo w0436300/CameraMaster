@@ -63,6 +63,7 @@ const Main = () => {
            
             <div className="btn-group mt-4 ">
             <Link className = "btn btn-sm btn-outline-secondary ml-2" to="/addcamera">Add New Camera</Link>
+
               </div>
           </div>
         </section>

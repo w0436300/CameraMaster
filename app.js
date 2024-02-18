@@ -67,7 +67,6 @@ app.get('/cameras', (req, res) => {
             ]
         };
     }
-
     Camera.find(searchCondition).then(data => {
         res.json(data); 
     }).catch(error => {
