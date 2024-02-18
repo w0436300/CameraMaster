@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import Details from './components/Details'
 import Error from './components/Error'
 import CreateForm from './components/CreateForm';
-import Landing from './components/Landing';
+// import Landing from './components/Landing';
 import {Routes, Route} from 'react-router-dom'
 import Newsletters from './components/Newsletters';
 
@@ -18,10 +18,10 @@ const App = () => {
       <NavBar />
       <div id="main-content">
         <Routes>
-          <Route index element = { <Landing /> } />
+          {/* <Route index element = { <Landing /> } /> */}
           <Route path="about" element = { <About />} errorElement={<Error />}  />
           <Route path="error" element = { <Error /> } />
-          <Route path="cameras" element = { <Main /> } />
+          <Route index element = { <Main /> } />
           <Route path="addcamera" element = { <CreateForm /> } />
           {/* <Route index element = { <Main /> } /> */}
           {/* <Route path="about" element = { <About /> } /> */}

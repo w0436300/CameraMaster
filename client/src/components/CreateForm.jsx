@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import '../css/signin.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import Landing from './Landing';
 
 
 //name email dob student id
 
 const CreateForm = props => {
 
+    const [isLoading, setIsLoading] = useState(true);
     const [brand, setBrand] = useState('')
     const [model, setModel] = useState('')
     const [features, setFeatures] = useState('')
@@ -16,11 +18,19 @@ const CreateForm = props => {
     
 
     const navigate = useNavigate()
-    
+
+    useEffect(() => {
+        const loadData = async () => {
+            await new Promise(resolve => setTimeout(resolve, 2000)); 
+            setIsLoading(false); //
+        };
+
+        loadData();
+    }, []);
     const handleSubmit = event => {
 
         event.preventDefault()
-
+        setIsLoading(true)
         //build our post body to send to the api
         const body = {
             model:model,
@@ -35,17 +45,22 @@ const CreateForm = props => {
             console.log(response)
 
             //navigate back to the home page if created successfully
-            navigate('/cameras') //programatically navigate back to th homepage
-
+            navigate('/') //programatically navigate back to th homepage
+            
             // if(response.status.)
         })
         .catch(error => {
-
+            console.log(error);
         })
+        .finally(() => {
+            setIsLoading(false); // 
+        });
             
     }
 
-
+    if(isLoading) {
+        return <Landing />
+    }
 
     return ( 
         <form className="form-signin" onSubmit={handleSubmit}>

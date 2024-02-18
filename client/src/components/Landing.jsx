@@ -1,30 +1,22 @@
-// import { useLoaderData } from 'react-router-dom';
+import { Loader,Segment,Dimmer, Message, Icon } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import '../css/Landing.css'
 
-// export const loader = async () => {
-//   return 'something';
-// };
-
-// const Landing = () => {
-//   const data = useLoaderData();
-//   console.log(data);
-//   return <h1>Landing</h1>;
-// };
-// export default Landing;
-
-import React from 'react';
-import '../css/signin.css';
-
-const SignIn = props => {
-    return ( 
-        <form className="form-signin">
-            <h1 className="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
-            <label htmlFor="inputEmail" className="sr-only">Email address</label>
-            <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus />
-            <label htmlFor="inputPassword" className="sr-only">Password</label>
-            <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-     );
+const Landing = () => {
+    return (
+        <div className="vh-100 d-flex justify-content-center align-items-center loading-background">
+          <Segment className="loading-segment">
+            <Dimmer active inverted>
+              <Loader size='large'>Preparing Something Amazing...</Loader>
+            </Dimmer>
+    
+            <div className="text-center mt-4">
+              <h4>Please wait, we are loading something awesome for you!</h4>
+              <p>This might take a few seconds, thank you for your patience.</p>
+            </div>
+          </Segment>
+        </div>
+      );
 }
- 
-export default SignIn;
+
+export default Landing;

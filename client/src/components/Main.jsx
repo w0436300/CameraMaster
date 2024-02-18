@@ -4,21 +4,25 @@ import '../css/main.css'
 import 'font-awesome/css/font-awesome.min.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import Landing from './Landing';
+
 
 const Main = () => {
 
   const [cameras, setCameras] = useState([])
-
+  const [isLoading, setIsLoading] = useState(true);
+  
   useEffect(() => {
     axios.get('http://localhost:8000/cameras')
       .then(response => {
         console.log(response.data);
-        setCameras(response.data)
+        setCameras(response.data);
+        setIsLoading(false);
 
     })
-    // .catch(error => {
-    //   console.error('Error:', error);
-    // });
+    .catch(error => {
+      console.error('Error:', error);
+    });
 
   },[])
 
@@ -38,9 +42,10 @@ const Main = () => {
       })
   }
 
-  
-  
+  if (isLoading) {
+    return <Landing />
 
+  }
     return ( 
       <div>
         <section className="jumbotron text-center">
