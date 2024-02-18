@@ -1,0 +1,31 @@
+.form-newsletter {
+  width: 100%;
+  max-width: 330px;
+  padding: 160px 0px 100px 0px;
+  margin: auto;
+}
+
+
+.form-newsletter .checkbox {
+  font-weight: 400;
+}
+.form-newsletter .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-newsletter .form-control:focus {
+  z-index: 2;
+}
+.form-newsletter input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-newsletter input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

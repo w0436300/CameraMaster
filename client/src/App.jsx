@@ -3,13 +3,13 @@ import NavBar from './components/NavBar';
 import About from './components/About';
 import Main from './components/Main';
 import SignIn from './components/SignIn';
+import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import Details from './components/Details'
 import Error from './components/Error'
 import CreateForm from './components/CreateForm';
 // import Landing from './components/Landing';
 import {Routes, Route} from 'react-router-dom'
-import Newsletters from './components/Newsletters';
 
 
 const App = () => {
@@ -24,10 +24,9 @@ const App = () => {
           <Route index element = { <Main /> } />
           <Route path="addcamera" element = { <CreateForm /> } />
           {/* <Route index element = { <Main /> } /> */}
-          {/* <Route path="about" element = { <About /> } /> */}
           <Route path="signin" element = { <SignIn /> } />
+          <Route path="newsletter" element = { <Newsletter /> } />
           <Route path="cameras/:id" element = { <Details /> } />
-          <Route path="newsletters" element = { <Newsletters /> } />
           {/* <Route path="homelayout" element={<HomeLayout />} />
           <Route path="error" element={<Error />} />
           <Route path="landing" element={<Landing />} /> */}

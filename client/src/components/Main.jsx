@@ -59,7 +59,6 @@ const Main = () => {
               </div>
             </div>
             <div className="btn-group mt-4 ">
-            <Link className = "btn btn-sm btn-outline-secondary" to="/signin">Sign In</Link>
             <Link className = "btn btn-sm btn-outline-secondary ml-2" to="/addcamera">Add New Camera</Link>
               </div>
             

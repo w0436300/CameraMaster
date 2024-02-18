@@ -32,6 +32,14 @@ const cameraSchema = new Schema({
     img_src:String,
 })
 
+const userSchema = new Schema({
+    name: String,
+    last_name: String,
+    email: String,
+    registeredAt: Date,
+});
+
+const User = mongoose.model('users', userSchema);
 const Camera = mongoose.model('cameras', cameraSchema); 
 
 app.get('/',(req,res) => {
@@ -45,6 +53,15 @@ app.get('/cameras',(req, res) => {
         console.log(error);
     })
 })
+
+app.get('/users', (req, res) => {
+    User.find().then(users => res.json(users))
+    .catch(error => {
+        console.log(error);
+        res.status(500).send({ message: "Server Error - Please come back soon" });
+    });
+});
+
 
 app.get('/cameras/:id', (req,res) => {
     Camera.findById(req.params.id)
@@ -73,6 +90,16 @@ app.post('/cameras', async (req,res) => {
     const newCamera = new Camera(req.body)
 
     const saved = await newCamera.save()
+    
+    res.send(saved)
+})
+
+app.post('/users', async (req,res) => {
+    console.log(req.body);
+
+    const newUser = new User(req.body)
+
+    const saved = await newUser.save()
     
     res.send(saved)
 })
