@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import '../css/card.css'
 
 
 const Card = ({camera, onDelete}) => {
@@ -25,14 +25,14 @@ const Card = ({camera, onDelete}) => {
           data-holder-rendered="true" />             
 
           <div className="card-body">
-            <p className="card-text">{camera.model}</p>
+            <p className="card-text custom-cardtitle">{camera.model}</p>
             <div className="d-flex justify-content-between align-items-center">
               <div className="btn-group">
-                  <Link type="button" className="btn btn-sm btn-outline-secondary" to={`/cameras/${camera._id}`} >View</Link>
+                  <Link type="button" className="btn btn-sm custom-link" to={`/cameras/${camera._id}`} >View</Link>
                   {/* <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button> */}
-                  <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=>handleDelete(camera)}>Delete</button>
+                  <button type="button" className="btn btn-sm ml-1  custom-button " onClick={()=>handleDelete(camera)}>Delete</button>
               </div>
-              <small className="text-muted">{camera?.color ? camera?.color.join(', ') : camera?.color}</small>
+              <small className="text-muted custom-card-small">{camera?.color ? camera?.color.join(', ') : camera?.color}</small>
             </div>
           </div>  
         </div>

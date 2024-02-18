@@ -56,7 +56,7 @@ const Main = () => {
     return ( 
       <div>
 
-        <section className="jumbotron text-center">
+        <section className="jumbotron text-center custom-searchForm">
           <div className="container">
             
             <SearchForm onSearch={handleSearch} />
@@ -68,7 +68,7 @@ const Main = () => {
         </section>
         
     
-        <div className="album py-5 bg-light">
+        <div className="album py-5 bg-light custom-main">
           <div className="container">
             <div className="row">
              {cameras.filter(camera => 

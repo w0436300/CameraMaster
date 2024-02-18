@@ -1,12 +1,24 @@
 :root {
     --jumbotron-padding-y: 2rem;
   }
-  
+
   .jumbotron {
     padding-top: var(--jumbotron-padding-y);
     padding-bottom: var(--jumbotron-padding-y);
     margin-bottom: 0;
   }
+
+  .custom-main{
+    background-color: #F7F7F7 !important;
+
+  }
+
+  .custom-searchForm{
+    background-color: #D1D1D1; 
+  }
+
+
+
   @media (min-width: 768px) {
     .jumbotron {
       padding-top: calc(var(--jumbotron-padding-y) * 2);

@@ -7,3 +7,7 @@
   footer p {
     margin-bottom: .25rem;
   }
+
+  .custom-footer {
+    background-color:#333D47  !important; 
+}
