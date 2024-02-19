@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import About from './components/About';
 import Main from './components/Main';
-import SignIn from './components/SignIn';
+import LogIn from './components/LogIn';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import Details from './components/Details'
@@ -24,8 +24,8 @@ const App = () => {
           <Route index element = { <Main /> } />
           <Route path="addcamera" element = { <CreateForm /> } />
           {/* <Route index element = { <Main /> } /> */}
-          <Route path="signin" element = { <SignIn /> } />
-          <Route path="newsletter" element = { <Newsletter /> } />
+          <Route path="login" element = { <LogIn /> } />
+          <Route path="register" element = { <Newsletter /> } />
           <Route path="cameras/:id" element = { <Details /> } />
           {/* <Route path="homelayout" element={<HomeLayout />} />
           <Route path="error" element={<Error />} />

@@ -6,6 +6,6 @@ export { default as HomeLayout } from './HomeLayout';
 export { default as Error } from './Error';
 export { default as NavBar } from './NavBar';
 export { default as CreateForm } from './CreateForm';
-export { default as SignIn } from './SignIn';
+export { default as login } from './login';
 export { default as Footer } from './Footer';
 export { default as Details } from './Details';

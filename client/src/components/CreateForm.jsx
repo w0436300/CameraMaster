@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import '../css/signin.css';
+import '../css/login.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Landing from './Landing';
@@ -61,7 +61,7 @@ const CreateForm = props => {
     }
 
     return ( 
-        <form className="form-signin" onSubmit={handleSubmit}>
+        <form className="form-login" onSubmit={handleSubmit}>
 
             <h1 className="h3 mb-3 font-weight-normal text-center">Create New Camera</h1>
 

@@ -3,17 +3,27 @@ import Card from './Card';
 import '../css/main.css'
 import 'font-awesome/css/font-awesome.min.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Landing from './Landing';
 import SearchForm from './SearchForm';
 
 
 const Main = () => {
 
+  const location = useLocation();
   const [cameras, setCameras] = useState([])
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [userRoles, setUserRoles] = useState([]);
   
+
+  useEffect(() => {
+    
+    if (location.state && location.state.roles) {
+        setUserRoles(location.state.roles);
+    }
+  }, [location.state]);
+
   useEffect(() => {
     axios.get('http://localhost:8000/cameras')
       .then(response => {
@@ -29,6 +39,11 @@ const Main = () => {
   },[])
 
   function handleDelete(cameraId) {
+
+    if (!userRoles.includes('admin')) {
+      alert('You do not have permission to perform this action.');
+      return;
+  }
     // //make a call to the delete endpoint for removing the camera from the db
     axios.delete(`http://localhost:8000/cameras/${cameraId}`)
       .then(response => {

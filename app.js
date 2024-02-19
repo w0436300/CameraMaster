@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+
 const app = express();
 
 app.use(cors());//allow fetch/ axios request from any domin
@@ -38,6 +39,7 @@ const userSchema = new Schema({
     email: String,
     registeredAt: Date,
     password:String,
+    roles: { type: [String], default: ['guest'] } 
 });
 
 const User = mongoose.model('users', userSchema);
@@ -85,27 +87,51 @@ app.get('/users', (req, res) => {
     });
 });
 
+//register
+app.post('/users', async (req,res) => {
+    console.log(req.body);
 
-app.get('/users/:id', (req,res) => {
-    User.findById(req.params.id)
-        .then(user => {
-            if(!user) {
-                return res.status(404).send()
-            }
+    const { email } = req.body;
+    // Check if a user with the same email already exists
+    const existingUser = await User.findOne({ email: email });
+    if (existingUser) {
+        return res.status(400).send('You already have an Account.');    
+    } else {
+        const newUser = new User(req.body)
 
-            console.log(`email: ${user.email}`);
-            res.json(user)  
-        }) 
-        .catch(error => {
-            console.log(error);
-            if(error.kind == 'ObjectId'){
-                res.status(400).send({message: "Inval Id"})
-            } else {
-                res.status(500).send({message: "Server Error - come back soon"})
-            }
-           
-        })
+        const saved = await newUser.save()
+    
+         res.send(saved)
+    }
+
 })
+
+//login
+
+app.post('/login',async(req,res) => {
+    const {email, password } = req.body;
+
+    const user = await User.findOne({email});
+
+    if(!user){
+        return res.status(400).send('User not Found');    
+    }
+
+    if(password !== user.password) {
+        return res.status(401).send('Invalid Password');    
+    }
+
+    res.json({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        roles: user.roles,
+        registeredAt: user.registeredAt
+    }) 
+
+})
+
+
 
 
 app.get('/cameras/:id', (req,res) => {
@@ -139,24 +165,6 @@ app.post('/cameras', async (req,res) => {
     res.send(saved)
 })
 
-app.post('/users', async (req,res) => {
-    console.log(req.body);
-
-    const { email } = req.body;
-    // Check if a user with the same email already exists
-    const existingUser = await User.findOne({ email: email });
-    if (existingUser) {
-        return res.status(400).send('You already have an Account.');    
-    } else {
-        const newUser = new User(req.body)
-
-        const saved = await newUser.save()
-    
-         res.send(saved)
-    }
-
-    
-})
 
 //delete camera by id
 app.delete('/cameras/:id', async (req,res) => {
