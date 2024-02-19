@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/navbar.css'
 
+
 const NavBar = () => {
     return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
@@ -34,6 +35,11 @@ const NavBar = () => {
                 <a className="dropdown-item" href="/#">Something else here</a>
               </div>
             </li>
+
+            <li className="nav-item">
+              <a className="nav-link" href="/signin">Sign In</a>
+            </li>
+
           </ul>
         </div>
       </div>

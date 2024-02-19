@@ -37,6 +37,7 @@ const userSchema = new Schema({
     last_name: String,
     email: String,
     registeredAt: Date,
+    password:String,
 });
 
 const User = mongoose.model('users', userSchema);
@@ -85,6 +86,28 @@ app.get('/users', (req, res) => {
 });
 
 
+app.get('/users/:id', (req,res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if(!user) {
+                return res.status(404).send()
+            }
+
+            console.log(`email: ${user.email}`);
+            res.json(user)  
+        }) 
+        .catch(error => {
+            console.log(error);
+            if(error.kind == 'ObjectId'){
+                res.status(400).send({message: "Inval Id"})
+            } else {
+                res.status(500).send({message: "Server Error - come back soon"})
+            }
+           
+        })
+})
+
+
 app.get('/cameras/:id', (req,res) => {
     Camera.findById(req.params.id)
         .then(camera => {
@@ -119,11 +142,20 @@ app.post('/cameras', async (req,res) => {
 app.post('/users', async (req,res) => {
     console.log(req.body);
 
-    const newUser = new User(req.body)
+    const { email } = req.body;
+    // Check if a user with the same email already exists
+    const existingUser = await User.findOne({ email: email });
+    if (existingUser) {
+        return res.status(400).send('You already have an Account.');    
+    } else {
+        const newUser = new User(req.body)
 
-    const saved = await newUser.save()
+        const saved = await newUser.save()
     
-    res.send(saved)
+         res.send(saved)
+    }
+
+    
 })
 
 //delete camera by id

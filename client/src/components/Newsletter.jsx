@@ -8,6 +8,7 @@ import axios from 'axios';
 const Newsletter = () => {
 
     const [isLoading, setIsLoading] = useState(true);
+    const [message,setMessage] = useState('')
 
     useEffect(() => {
         const loadData = async () => {
@@ -27,7 +28,8 @@ const Newsletter = () => {
             name: event.target.name.value,
             last_name: event.target.lastName.value,
             email: event.target.email.value,
-            registeredAt: new Date().toISOString()
+            registeredAt: new Date().toISOString(),
+            password:event.target.password.value
         }
         //post this data to an endpoint for creation
         axios.post(`http://localhost:8000/users`, formData)
@@ -35,10 +37,13 @@ const Newsletter = () => {
             console.log(response)
             toast.success("We got your information!!"); 
             // if(response.status.)
+            event.target.reset();
         })
         .catch(error => {
             console.log(error);
             toast.error("Submission failed, please try again!")
+            event.target.reset();
+            setMessage('You already have an Account')
         })
         .finally(() => {
             console.log("Finished loading");
@@ -56,7 +61,7 @@ const Newsletter = () => {
       <div>
         <ToastContainer />
         <form className="form form-newsletter" onSubmit={handleSubmit}>
-            <h1 className="h3 mb-3 font-weight-normal text-center">Our Newsletter</h1>
+            <h1 className="h3 mb-3 font-weight-normal text-center">Register</h1>
             
             <div className='form-row mb-2'>
                  <label htmlFor="inputName" className="sr-only form-label">Name</label>
@@ -91,7 +96,19 @@ const Newsletter = () => {
                           required autoFocus />
             </div>
 
-             <button className="btn btn-lg btn-primary btn-block mt-4" type="submit" >Submit</button>
+            <div className='form-row'>
+                <label htmlFor="inputPassword" className="sr-only form-label">Password</label>
+                <input type="password" 
+                       id="inputPassword" 
+                         className="form-input form-control" 
+                         name="password"
+                         placeholder="Password" 
+                          required autoFocus />
+            </div>
+
+            <p className='register-message text-danger'>{message}</p>
+
+             <button className="btn btn-lg btn-primary btn-block mt-4" type="submit" >Register</button>
         </form>
       </div>  
      );
