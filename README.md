@@ -7,8 +7,11 @@ The Camera Master Store is a dynamic camera store website that enhances user exp
 Key Features:
 
 Node.js and Express.js Framework: Combines the power of Node.js with Express.js to offer a robust and scalable backend with efficient request handling.
+
 MongoDB with Mongoose: Employs MongoDB and Mongoose for streamlined database operations and effective data management.
+
 React.js for UI: Utilizes React.js to create a dynamic and interactive user interface, ensuring a responsive and intuitive experience.
+
 Advanced User Access Control: Implements a sophisticated access control system to differentiate between admin and guest user roles, enhancing management capabilities and user experience.
 
 
